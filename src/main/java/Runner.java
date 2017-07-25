@@ -1,7 +1,11 @@
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class Runner {
 
 
-    private String name;
+    private StringProperty name;
 
     private int ppm_seconds;
     private int ppm_minutes;
@@ -19,7 +23,6 @@ public class Runner {
 
         calculatePacePerMile();
     }
-
     private void calculatePacePerMile() {
         int tempo_total_secs = (getTempoMinutes()*60) + getTempoSeconds();
         int ppm_total_secs = (int) (tempo_total_secs/getTempoDistance());
@@ -30,12 +33,18 @@ public class Runner {
 
     public void setName(String name)
     {
-        this.name = name;
+        nameProperty().set(name);
     }
     public String getName()
     {
+        return nameProperty().get();
+    }
+    public StringProperty nameProperty() {
+        if (name == null) name = new SimpleStringProperty(this, "name");
         return name;
     }
+
+
     public void setTempoSeconds(int sec)
     {
         this.tempo_seconds = sec;
@@ -72,4 +81,6 @@ public class Runner {
     {
         return ppm_minutes;
     }
+
+
 }

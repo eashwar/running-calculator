@@ -11,6 +11,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 public class AddRunnerPane extends GridPane {
+    private static AddRunnerPane instance;
+
     //UI ELEMENTS
     private Label name_label;
     private Label minutes_label;
@@ -21,11 +23,18 @@ public class AddRunnerPane extends GridPane {
     private final TextField minutes = new TextField();
     private final TextField seconds = new TextField();
     private final TextField distance = new TextField();
-    private final TextField pace = new TextField();
 
     private Button calculateBtn = new Button();
     private HBox hbBtn;
 
+    public static AddRunnerPane getInstance()
+    {
+        if (instance == null)
+        {
+            instance = new AddRunnerPane();
+        }
+        return instance;
+    }
 
     public AddRunnerPane(){
         initializeUIElements();
@@ -46,18 +55,14 @@ public class AddRunnerPane extends GridPane {
         distance_label = new Label("Total Distance: ");
         distance.setPromptText("miles");
 
-        pace.setPrefColumnCount(40);
-        pace.setPromptText("Pace per mile will appear here.");
-        pace.setEditable(false);
-
-        calculateBtn.setText("Calculate");
+        calculateBtn.setText("Add Runner to Table");
         calculateBtn.setOnAction(new EventHandler<ActionEvent>() {
 
 
             public void handle(ActionEvent event) {
-                Runner p1 = new Runner(name.getText(), Integer.parseInt(seconds.getText()), Integer.parseInt(minutes.getText()), Double.parseDouble(distance.getText()));
+                Runner runner = new Runner(name.getText(), Integer.parseInt(seconds.getText()), Integer.parseInt(minutes.getText()), Double.parseDouble(distance.getText()));
 
-                pace.setText(p1.getName() + "'s pace was " + p1.getPpmMinutes() + " minutes and " + p1.getPpmSeconds() + " seconds!");
+                Main.getInstance().addRunner(runner);
             }
         });
         calculateBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -94,8 +99,6 @@ public class AddRunnerPane extends GridPane {
         add(distance, 1, 4);
 
         add(hbBtn, 0, 5, 2, 1);
-
-        add(pace, 0, 6, 2, 1);
 
     }
 }
