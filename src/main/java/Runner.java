@@ -1,31 +1,25 @@
-import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 
 public class Runner {
 
 
-    private StringProperty name;
+    private final SimpleStringProperty name;
 
     private int ppm_seconds;
     private int ppm_minutes;
-
-    private int tempo_seconds;
-    private int tempo_minutes;
-    private double tempo_distance;
+    private final SimpleStringProperty pacePerMile;
 
     public Runner(String name, int sec, int min, double dist)
     {
-        setName(name);
-        setTempoSeconds(sec);
-        setTempoMinutes(min);
-        setTempoDistance(dist);
+        this.name = new SimpleStringProperty(name);
 
-        calculatePacePerMile();
+        calculatePacePerMile(sec, min, dist);
+
+        this.pacePerMile = new SimpleStringProperty(getPpmString());
     }
-    private void calculatePacePerMile() {
-        int tempo_total_secs = (getTempoMinutes()*60) + getTempoSeconds();
-        int ppm_total_secs = (int) (tempo_total_secs/getTempoDistance());
+    private void calculatePacePerMile(int sec, int min, double dist) {
+        int tempo_total_secs = (min*60) + sec;
+        int ppm_total_secs = (int) (tempo_total_secs/dist);
 
         ppm_minutes = ppm_total_secs/60;
         ppm_seconds = ppm_total_secs%60;
@@ -33,54 +27,29 @@ public class Runner {
 
     public void setName(String name)
     {
-        nameProperty().set(name);
+        this.name.set(name);
     }
     public String getName()
     {
-        return nameProperty().get();
+        return name.get();
     }
-    public StringProperty nameProperty() {
-        if (name == null) name = new SimpleStringProperty(this, "name");
-        return name;
+
+    public void setPacePerMile(String ppm){
+        this.pacePerMile.set(ppm);
+    }
+    public String getPacePerMile()
+    {
+        return pacePerMile.get();
     }
 
 
-    public void setTempoSeconds(int sec)
+    public String getPpmString()
     {
-        this.tempo_seconds = sec;
-        calculatePacePerMile();
+        if (ppm_seconds > 9) return String.valueOf(ppm_minutes) + ":" + String.valueOf(ppm_seconds);
+        else return String.valueOf(ppm_minutes) + ":0" + String.valueOf(ppm_seconds);
     }
-    public int getTempoSeconds()
+    public String toString()
     {
-        return tempo_seconds;
+        return getName();
     }
-    public void setTempoMinutes(int min)
-    {
-        this.tempo_minutes = min;
-        calculatePacePerMile();
-    }
-    public int getTempoMinutes()
-    {
-        return tempo_minutes;
-    }
-    public void setTempoDistance(double distance)
-    {
-        this.tempo_distance = distance;
-        calculatePacePerMile();
-    }
-    public double getTempoDistance()
-    {
-        return tempo_distance;
-    }
-
-    public int getPpmSeconds()
-    {
-        return ppm_seconds;
-    }
-    public int getPpmMinutes()
-    {
-        return ppm_minutes;
-    }
-
-
 }
