@@ -16,9 +16,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -38,7 +35,11 @@ public class Main extends Application{
     private Button calculateBtn = new Button();
     private HBox hbBtn;
 
+    private Button deleteRowBtn = new Button();
+
     private GridPane AddRunnerPane = new GridPane();
+
+    private GridPane RunnerTablePane = new GridPane();
 
     private TabPane tabPane = new TabPane();
     private BorderPane borderPane = new BorderPane();
@@ -78,7 +79,7 @@ public class Main extends Application{
 
         tableTab.setText("Runner Table");
         configTableView(runnerObservableList);
-        tableTab.setContent(runnerTableView);
+        tableTab.setContent(RunnerTablePane);
         tableTab.setClosable(false);
         tabPane.getTabs().add(tableTab);
 
@@ -97,19 +98,21 @@ public class Main extends Application{
     private void configTableView(ObservableList<Runner> runnerList)
     {
         runnerTableView.setEditable(true);
+        runnerTableView.setMinSize(500, 300);
 
         TableColumn nameCol = new TableColumn("Name");
         nameCol.setMinWidth(50);
         nameCol.setCellValueFactory(
                 new PropertyValueFactory<Runner, String>("name"));
 
-        TableColumn ppmCol = new TableColumn("Tempo PPM");
-        ppmCol.setMinWidth(50);
+        TableColumn ppmCol = new TableColumn("Tempo Pace");
+        ppmCol.setMinWidth(70);
         ppmCol.setCellValueFactory(
                 new PropertyValueFactory<Runner, String>("pacePerMile"));
 
         runnerTableView.setItems(runnerList);
         runnerTableView.getColumns().setAll(nameCol, ppmCol);
+
 
     }
     private void initializeUIElements()
@@ -127,32 +130,26 @@ public class Main extends Application{
         distance.setPromptText("miles");
 
         calculateBtn.setText("Add Runner to Table");
-        calculateBtn.setOnAction(new EventHandler<ActionEvent>() {
+        calculateBtn.setOnAction(event -> {
+            Runner runner = new Runner(name.getText(), Integer.parseInt(seconds.getText()), Integer.parseInt(minutes.getText()), Double.parseDouble(distance.getText()));
+            Alert confirmAddRunner = new Alert(Alert.AlertType.CONFIRMATION);
+            confirmAddRunner.setTitle("Confirm Add Runner");
+            confirmAddRunner.setHeaderText("Add runner " + runner + " to the table?");
 
+            Optional<ButtonType> result = confirmAddRunner.showAndWait();
+            if (result.get() == ButtonType.OK){
+                runnerObservableList.add(runner);
+                name.clear();
+                minutes.clear();
+                seconds.clear();
+                distance.clear();
 
-            public void handle(ActionEvent event) {
-                Runner runner = new Runner(name.getText(), Integer.parseInt(seconds.getText()), Integer.parseInt(minutes.getText()), Double.parseDouble(distance.getText()));
-                Alert confirmAddRunner = new Alert(Alert.AlertType.CONFIRMATION);
-                confirmAddRunner.setTitle("Confirm Add Runner");
-                confirmAddRunner.setHeaderText("Add runner " + runner + " to the table?");
+                Alert addRunnerSuccess = new Alert(Alert.AlertType.INFORMATION);
+                addRunnerSuccess.setTitle("Success");
+                addRunnerSuccess.setHeaderText("Successfully Added Runner:");
+                addRunnerSuccess.setContentText(runner + " was successfully added to the table!");
 
-                Optional<ButtonType> result = confirmAddRunner.showAndWait();
-                if (result.get() == ButtonType.OK){
-                    runnerObservableList.add(runner);
-                    name.clear();
-                    minutes.clear();
-                    seconds.clear();
-                    distance.clear();
-
-                    Alert addRunnerSuccess = new Alert(Alert.AlertType.INFORMATION);
-                    addRunnerSuccess.setTitle("Success");
-                    addRunnerSuccess.setHeaderText("Successfully Added Runner:");
-                    addRunnerSuccess.setContentText(runner + " was successfully added to the table!");
-
-                    addRunnerSuccess.showAndWait();
-                } else {
-
-                }
+                addRunnerSuccess.showAndWait();
             }
         });
         calculateBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {
@@ -163,10 +160,22 @@ public class Main extends Application{
                 }
             }
         });
+
         hbBtn = new HBox(10);
         hbBtn.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtn.getChildren().add(calculateBtn);
 
+        deleteRowBtn.setText("Remove Selected Row From Table");
+        deleteRowBtn.setAlignment(Pos.BOTTOM_RIGHT);
+        deleteRowBtn.setOnAction(new EventHandler<ActionEvent>(){
+
+            @Override
+            public void handle(ActionEvent t) {
+                Runner currentRunner = runnerTableView.getSelectionModel().getSelectedItem();
+                runnerObservableList.remove(currentRunner);
+                runnerTableView.refresh();
+            }
+        });
     }
 
     private void constructGrid()
@@ -190,9 +199,17 @@ public class Main extends Application{
 
         AddRunnerPane.add(hbBtn, 0, 5, 2, 1);
 
+
+        RunnerTablePane.setAlignment(Pos.CENTER);
+        RunnerTablePane.setHgap(10);
+        RunnerTablePane.setVgap(10);
+        RunnerTablePane.add(runnerTableView, 0, 1);
+        RunnerTablePane.add(deleteRowBtn, 0, 2);
+
     }
 
     public static void main(String[] args) {
         launch(args);
     }
+
 }
