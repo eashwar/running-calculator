@@ -16,7 +16,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import javafx.stage.FileChooser;
 
+import java.io.File;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.ArrayList;
@@ -31,6 +33,9 @@ import org.apache.commons.csv.CSVRecord;
 public class Main extends Application{
 
     private Gson gson = new Gson();
+
+    FileChooser fileChooser = new FileChooser();
+
     //UI ELEMENTS
     private Label name_label;
     private Label minutes_label;
@@ -73,33 +78,29 @@ public class Main extends Application{
 
         primaryStage.setTitle("Pace Calculator");
 
-        initializeUIElements();
+        fileChooser.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("CSV files (*.csv)", "*.csv"));
+        fileChooser.setInitialFileName("runner_table.csv");
+        fileChooser.setInitialDirectory(new File((System.getProperty("user.home"))+"/Documents"));
+
+        initializeUIElements(primaryStage);
         constructGrid();
 
         runnerTab.setText("Add Runners");
         runnerTab.setContent(AddRunnerPane);
         runnerTab.setClosable(false);
-        tabPane.getTabs().add(runnerTab);
-
-        runnerObservableList.addListener(new ListChangeListener() {
-            public void onChanged(ListChangeListener.Change change) {
-                while(change.next()) {
-                    System.out.println("change detected!");
-                }
-            }
-        });
-
 
         tableTab.setText("Runner Table");
         configTableView(runnerObservableList);
         tableTab.setContent(RunnerTablePane);
         tableTab.setClosable(false);
-        tabPane.getTabs().add(tableTab);
 
         Scene scene = new Scene(root, 700, 500);
 
         borderPane.prefHeightProperty().bind(scene.heightProperty());
         borderPane.prefWidthProperty().bind(scene.widthProperty());
+
+        tabPane.getTabs().add(tableTab);
+        tabPane.getTabs().add(runnerTab);
 
         borderPane.setCenter(tabPane);
         root.getChildren().add(borderPane);
@@ -128,7 +129,7 @@ public class Main extends Application{
 
 
     }
-    private void initializeUIElements()
+    private void initializeUIElements(Stage primaryStage)
     {
         name_label = new Label("Name: ");
         name.setPromptText("Name of runner");
@@ -145,36 +146,39 @@ public class Main extends Application{
         saveBtn.setText("Save to CSV");
         saveBtn.setAlignment(Pos.BOTTOM_LEFT);
         saveBtn.setOnAction(event -> {
-            List<RunnerDTO> runnerDTOList = new ArrayList<RunnerDTO>();
-            for (Runner runner : runnerObservableList)
-            {
-                RunnerDTO runnerDTO = new RunnerDTO();
-                runnerDTO.applyChangesFrom(runner);
-                runnerDTOList.add(runnerDTO);
+            File outfile = fileChooser.showSaveDialog(primaryStage);
+            if (outfile != null) {
+                List<RunnerDTO> runnerDTOList = new ArrayList<>();
+                for (Runner runner : runnerObservableList) {
+                    RunnerDTO runnerDTO = new RunnerDTO();
+                    runnerDTO.applyChangesFrom(runner);
+                    runnerDTOList.add(runnerDTO);
+                }
+                String runnerJSON = gson.toJson(runnerDTOList);
+                List<Map<String, String>> flatJson = JSONFlattener.parseJson(runnerJSON);
+                CSVWriter.writeToFile(CSVWriter.getCSV(flatJson), outfile);
             }
-            String runnerJSON = gson.toJson(runnerDTOList);
-            List<Map<String, String>> flatJson = JSONFlattener.parseJson(runnerJSON);
-            CSVWriter.writeToFile(CSVWriter.getCSV(flatJson), "runnerlist.CSV");
         });
 
         loadBtn.setText("Load from CSV");
         loadBtn.setAlignment(Pos.BOTTOM_CENTER);
         loadBtn.setOnAction(event -> {
             try {
-                Reader in = new FileReader("runnerlist.csv");
-                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
-                ArrayList<Runner> runners = new ArrayList<Runner>();
-                for (CSVRecord record : records) {
-                    String name = record.get(0);
-                    System.out.print("name: " + name);
-                    String pacePerMile = record.get(1);
-                    System.out.println(", ppm: " + pacePerMile);
-                    Runner runner = new Runner(name, pacePerMile);
-                    runners.add(runner);
+                File infile = fileChooser.showOpenDialog(primaryStage);
+                if (infile != null) {
+                    Reader in = new FileReader(infile);
+                    Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+                    ArrayList<Runner> runners = new ArrayList<Runner>();
+                    for (CSVRecord record : records) {
+                        String name = record.get(0);
+                        String pacePerMile = record.get(1);
+                        Runner runner = new Runner(name, pacePerMile);
+                        runners.add(runner);
+                    }
+                    runners.remove(0);
+                    runnerObservableList = FXCollections.observableArrayList(runners);
+                    configTableView(runnerObservableList);
                 }
-                runners.remove(0);
-                runnerObservableList = FXCollections.observableArrayList(runners);
-                configTableView(runnerObservableList);
             } catch (Exception e)
             {
                 e.printStackTrace();
@@ -195,13 +199,6 @@ public class Main extends Application{
                 minutes.clear();
                 seconds.clear();
                 distance.clear();
-
-                Alert addRunnerSuccess = new Alert(Alert.AlertType.INFORMATION);
-                addRunnerSuccess.setTitle("Success");
-                addRunnerSuccess.setHeaderText("Successfully Added Runner:");
-                addRunnerSuccess.setContentText(runner + " was successfully added to the table!");
-
-                addRunnerSuccess.showAndWait();
             }
         });
         calculateBtn.setOnKeyPressed(new EventHandler<KeyEvent>() {

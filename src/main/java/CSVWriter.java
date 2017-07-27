@@ -68,14 +68,14 @@ public class CSVWriter {
      * @param csvString  The csv string to write into the file
      * @param fileName   The file to write (included the path)
      */
-    public static void writeToFile(String csvString, String fileName) {
+    public static void writeToFile(String csvString, File file) {
         try {
-            FileUtils.write(new File(fileName), csvString);
+            FileUtils.write(file, csvString);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Write the given CSV from a flat json to the given file.
      * 

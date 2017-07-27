@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cfeb200-72d1-4df3-b7ac-7c012f34832b" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_8_9.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_io_commons_io_2_5.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_csv_1_3.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apache_commons_commons_lang3_3_1.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_json_json_20070829.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/JSONFlattener.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/RunnerDTO.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/runnerlist.CSV" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/running-calculator.iml" afterPath="$PROJECT_DIR$/running-calculator.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/CSVWriter.java" afterPath="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Runner.java" afterPath="$PROJECT_DIR$/src/main/java/Runner.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -41,19 +31,30 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="839">
-              <caret line="174" column="34" lean-forward="false" selection-start-line="174" selection-start-column="34" selection-end-line="174" selection-end-column="34" />
+            <state relative-caret-position="694">
+              <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Main#0;class#Main#0" expanded="false" />
-                <element signature="method#configTableView#0;class#Main#0" expanded="false" />
-                <element signature="e#4493#5048#0" expanded="false" />
-                <element signature="e#4561#4572#0" expanded="true" />
-                <element signature="e#5392#5400#0" expanded="true" />
-                <element signature="e#6177#7272#0" expanded="false" />
-                <element signature="class#7316:7558" expanded="false" />
-                <element signature="method#handle#0;class#7316:7558" expanded="false" />
-                <element signature="class#7840:8160" expanded="false" />
+                <element signature="e#4617#5296#0" expanded="false" />
+                <element signature="e#5419#6381#0" expanded="false" />
+                <element signature="e#5752#5760#0" expanded="true" />
+                <element signature="e#6471#7204#0" expanded="false" />
+                <element signature="class#7248:7490" expanded="false" />
+                <element signature="class#7772:8092" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CSVWriter.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/CSVWriter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="496">
+              <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#5038#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -95,6 +96,7 @@
       <find>new Label(&quot;</find>
       <find>Seconds</find>
       <find>grid.</find>
+      <find>set</find>
     </findStrings>
     <replaceStrings>
       <replace>new Label(&quot;Total</replace>
@@ -117,10 +119,10 @@
         <option value="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.1/gson-2.8.1.jar!/com/google/gson/JsonArray.class" />
         <option value="$PROJECT_DIR$/src/main/java/Runner.java" />
         <option value="$PROJECT_DIR$/src/main/java/RunnerDTO.java" />
-        <option value="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/JSONFlattener.java" />
         <option value="$PROJECT_DIR$/runnerlist.CSV" />
+        <option value="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
       </list>
     </option>
@@ -389,14 +391,12 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="method#configTableView#0;class#Main#0" expanded="false" />
-            <element signature="e#4493#5048#0" expanded="false" />
-            <element signature="e#4561#4572#0" expanded="true" />
-            <element signature="e#5392#5400#0" expanded="true" />
-            <element signature="e#6177#7272#0" expanded="false" />
-            <element signature="class#7316:7558" expanded="false" />
-            <element signature="method#handle#0;class#7316:7558" expanded="false" />
-            <element signature="class#7840:8160" expanded="false" />
+            <element signature="e#4617#5296#0" expanded="false" />
+            <element signature="e#5419#6381#0" expanded="false" />
+            <element signature="e#5752#5760#0" expanded="true" />
+            <element signature="e#6471#7204#0" expanded="false" />
+            <element signature="class#7248:7490" expanded="false" />
+            <element signature="class#7772:8092" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -417,14 +417,12 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="method#configTableView#0;class#Main#0" expanded="false" />
-            <element signature="e#4493#5048#0" expanded="false" />
-            <element signature="e#4561#4572#0" expanded="true" />
-            <element signature="e#5392#5400#0" expanded="true" />
-            <element signature="e#6177#7272#0" expanded="false" />
-            <element signature="class#7316:7558" expanded="false" />
-            <element signature="method#handle#0;class#7316:7558" expanded="false" />
-            <element signature="class#7840:8160" expanded="false" />
+            <element signature="e#4617#5296#0" expanded="false" />
+            <element signature="e#5419#6381#0" expanded="false" />
+            <element signature="e#5752#5760#0" expanded="true" />
+            <element signature="e#6471#7204#0" expanded="false" />
+            <element signature="class#7248:7490" expanded="false" />
+            <element signature="class#7772:8092" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -456,14 +454,12 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="method#configTableView#0;class#Main#0" expanded="false" />
-            <element signature="e#4493#5048#0" expanded="false" />
-            <element signature="e#4561#4572#0" expanded="true" />
-            <element signature="e#5392#5400#0" expanded="true" />
-            <element signature="e#6177#7272#0" expanded="false" />
-            <element signature="class#7316:7558" expanded="false" />
-            <element signature="method#handle#0;class#7316:7558" expanded="false" />
-            <element signature="class#7840:8160" expanded="false" />
+            <element signature="e#4617#5296#0" expanded="false" />
+            <element signature="e#5419#6381#0" expanded="false" />
+            <element signature="e#5752#5760#0" expanded="true" />
+            <element signature="e#6471#7204#0" expanded="false" />
+            <element signature="class#7248:7490" expanded="false" />
+            <element signature="class#7772:8092" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -553,17 +549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/CSVWriter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="627">
-          <caret line="101" column="32" lean-forward="false" selection-start-line="101" selection-start-column="32" selection-end-line="101" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#5062#0" expanded="true" />
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/pom.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1683">
@@ -592,14 +577,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/runnerlist.CSV">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/RunnerDTO.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
@@ -608,21 +585,46 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_141/src.zip!/java/io/File.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="401">
+          <caret line="1697" column="22" lean-forward="false" selection-start-line="1697" selection-start-column="19" selection-end-line="1697" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/CSVWriter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="496">
+          <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#5038#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/runnerlist.CSV">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="839">
-          <caret line="174" column="34" lean-forward="false" selection-start-line="174" selection-start-column="34" selection-end-line="174" selection-end-column="34" />
+        <state relative-caret-position="694">
+          <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="method#configTableView#0;class#Main#0" expanded="false" />
-            <element signature="e#4493#5048#0" expanded="false" />
-            <element signature="e#4561#4572#0" expanded="true" />
-            <element signature="e#5392#5400#0" expanded="true" />
-            <element signature="e#6177#7272#0" expanded="false" />
-            <element signature="class#7316:7558" expanded="false" />
-            <element signature="method#handle#0;class#7316:7558" expanded="false" />
-            <element signature="class#7840:8160" expanded="false" />
+            <element signature="e#4617#5296#0" expanded="false" />
+            <element signature="e#5419#6381#0" expanded="false" />
+            <element signature="e#5752#5760#0" expanded="true" />
+            <element signature="e#6471#7204#0" expanded="false" />
+            <element signature="class#7248:7490" expanded="false" />
+            <element signature="class#7772:8092" expanded="false" />
           </folding>
         </state>
       </provider>
