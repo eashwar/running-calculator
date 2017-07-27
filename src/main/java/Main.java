@@ -1,6 +1,5 @@
 import javafx.application.Application;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,6 +9,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
@@ -83,14 +83,14 @@ public class Main extends Application{
         fileChooser.setInitialDirectory(new File((System.getProperty("user.home"))+"/Documents"));
 
         initializeUIElements(primaryStage);
-        constructGrid();
+        constructGrids();
 
         runnerTab.setText("Add Runners");
         runnerTab.setContent(AddRunnerPane);
         runnerTab.setClosable(false);
 
         tableTab.setText("Runner Table");
-        configTableView(runnerObservableList);
+        constructTable(runnerObservableList);
         tableTab.setContent(RunnerTablePane);
         tableTab.setClosable(false);
 
@@ -104,12 +104,12 @@ public class Main extends Application{
 
         borderPane.setCenter(tabPane);
         root.getChildren().add(borderPane);
-
+        primaryStage.getIcons().add( new Image( Main.class.getResourceAsStream( "running_calculator_icon.ico" )));
         primaryStage.setScene(scene);
 
         primaryStage.show();
     }
-    private void configTableView(ObservableList<Runner> runnerList)
+    private void constructTable(ObservableList<Runner> runnerList)
     {
         runnerTableView.setEditable(true);
         runnerTableView.setMinSize(500, 300);
@@ -177,7 +177,7 @@ public class Main extends Application{
                     }
                     runners.remove(0);
                     runnerObservableList = FXCollections.observableArrayList(runners);
-                    configTableView(runnerObservableList);
+                    constructTable(runnerObservableList);
                 }
             } catch (Exception e)
             {
@@ -226,25 +226,24 @@ public class Main extends Application{
             }
         });
     }
-
-    private void constructGrid()
+    private void constructGrids()
     {
         AddRunnerPane.setAlignment(Pos.CENTER);
         AddRunnerPane.setHgap(10);
         AddRunnerPane.setVgap(10);
-        AddRunnerPane.setPadding(new Insets(25, 25, 25, 25));
+        AddRunnerPane.setPadding(new Insets(15, 15, 15, 15));
 
         AddRunnerPane.add(name_label, 0, 1);
         AddRunnerPane.add(name, 1, 1);
 
-        AddRunnerPane.add(minutes_label, 0, 2);
-        AddRunnerPane.add(minutes, 1, 2);
+        AddRunnerPane.add(distance_label, 0, 2);
+        AddRunnerPane.add(distance, 1, 2);
 
-        AddRunnerPane.add(seconds_label, 0, 3);
-        AddRunnerPane.add(seconds, 1, 3);
+        AddRunnerPane.add(minutes_label, 0, 3);
+        AddRunnerPane.add(minutes, 1, 3);
 
-        AddRunnerPane.add(distance_label, 0, 4);
-        AddRunnerPane.add(distance, 1, 4);
+        AddRunnerPane.add(seconds_label, 0, 4);
+        AddRunnerPane.add(seconds, 1, 4);
 
         AddRunnerPane.add(hbBtn, 0, 5, 2, 1);
 
@@ -262,5 +261,4 @@ public class Main extends Application{
     public static void main(String[] args) {
         launch(args);
     }
-
 }

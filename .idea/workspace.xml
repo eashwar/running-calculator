@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3cfeb200-72d1-4df3-b7ac-7c012f34832b" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/runnerlist.CSV" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/CSVWriter.java" afterPath="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/pom.xml" afterPath="$PROJECT_DIR$/pom.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/Main.java" afterPath="$PROJECT_DIR$/src/main/java/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -18,30 +17,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="450">
-      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/pom.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1683">
-              <caret line="65" column="17" lean-forward="false" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
+            <state relative-caret-position="800">
+              <caret line="68" column="96" lean-forward="false" selection-start-line="68" selection-start-column="96" selection-end-line="68" selection-end-column="96" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="694">
-              <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
+            <state relative-caret-position="450">
+              <caret line="106" column="114" lean-forward="false" selection-start-line="106" selection-start-column="114" selection-end-line="106" selection-end-column="114" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#Main#0;class#Main#0" expanded="false" />
-                <element signature="e#4617#5296#0" expanded="false" />
-                <element signature="e#5419#6381#0" expanded="false" />
-                <element signature="e#5752#5760#0" expanded="true" />
-                <element signature="e#6471#7204#0" expanded="false" />
-                <element signature="class#7248:7490" expanded="false" />
-                <element signature="class#7772:8092" expanded="false" />
+                <element signature="method#initializeUIElements#0;class#Main#0" expanded="false" />
+                <element signature="e#4717#5396#0" expanded="false" />
+                <element signature="e#5519#6480#0" expanded="false" />
+                <element signature="e#5852#5860#0" expanded="true" />
+                <element signature="e#6570#7303#0" expanded="false" />
+                <element signature="class#7347:7589" expanded="false" />
+                <element signature="class#7871:8191" expanded="false" />
+                <element signature="method#constructGrids#0;class#Main#0" expanded="false" />
+                <marker date="1501118409390" expanded="false" signature="3538:4157" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -51,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/CSVWriter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="496">
-              <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+              <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
               <folding>
                 <element signature="e#0#5038#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -119,11 +121,11 @@
         <option value="$MAVEN_REPOSITORY$/com/google/code/gson/gson/2.8.1/gson-2.8.1.jar!/com/google/gson/JsonArray.class" />
         <option value="$PROJECT_DIR$/src/main/java/Runner.java" />
         <option value="$PROJECT_DIR$/src/main/java/RunnerDTO.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/JSONFlattener.java" />
         <option value="$PROJECT_DIR$/runnerlist.CSV" />
         <option value="$PROJECT_DIR$/src/main/java/CSVWriter.java" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
       </list>
     </option>
   </component>
@@ -391,12 +393,15 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="e#4617#5296#0" expanded="false" />
-            <element signature="e#5419#6381#0" expanded="false" />
-            <element signature="e#5752#5760#0" expanded="true" />
-            <element signature="e#6471#7204#0" expanded="false" />
-            <element signature="class#7248:7490" expanded="false" />
-            <element signature="class#7772:8092" expanded="false" />
+            <element signature="method#initializeUIElements#0;class#Main#0" expanded="false" />
+            <element signature="e#4717#5396#0" expanded="false" />
+            <element signature="e#5519#6480#0" expanded="false" />
+            <element signature="e#5852#5860#0" expanded="true" />
+            <element signature="e#6570#7303#0" expanded="false" />
+            <element signature="class#7347:7589" expanded="false" />
+            <element signature="class#7871:8191" expanded="false" />
+            <element signature="method#constructGrids#0;class#Main#0" expanded="false" />
+            <marker date="1501118409390" expanded="false" signature="3538:4157" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -417,12 +422,15 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="e#4617#5296#0" expanded="false" />
-            <element signature="e#5419#6381#0" expanded="false" />
-            <element signature="e#5752#5760#0" expanded="true" />
-            <element signature="e#6471#7204#0" expanded="false" />
-            <element signature="class#7248:7490" expanded="false" />
-            <element signature="class#7772:8092" expanded="false" />
+            <element signature="method#initializeUIElements#0;class#Main#0" expanded="false" />
+            <element signature="e#4717#5396#0" expanded="false" />
+            <element signature="e#5519#6480#0" expanded="false" />
+            <element signature="e#5852#5860#0" expanded="true" />
+            <element signature="e#6570#7303#0" expanded="false" />
+            <element signature="class#7347:7589" expanded="false" />
+            <element signature="class#7871:8191" expanded="false" />
+            <element signature="method#constructGrids#0;class#Main#0" expanded="false" />
+            <marker date="1501118409390" expanded="false" signature="3538:4157" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -454,12 +462,15 @@
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="e#4617#5296#0" expanded="false" />
-            <element signature="e#5419#6381#0" expanded="false" />
-            <element signature="e#5752#5760#0" expanded="true" />
-            <element signature="e#6471#7204#0" expanded="false" />
-            <element signature="class#7248:7490" expanded="false" />
-            <element signature="class#7772:8092" expanded="false" />
+            <element signature="method#initializeUIElements#0;class#Main#0" expanded="false" />
+            <element signature="e#4717#5396#0" expanded="false" />
+            <element signature="e#5519#6480#0" expanded="false" />
+            <element signature="e#5852#5860#0" expanded="true" />
+            <element signature="e#6570#7303#0" expanded="false" />
+            <element signature="class#7347:7589" expanded="false" />
+            <element signature="class#7871:8191" expanded="false" />
+            <element signature="method#constructGrids#0;class#Main#0" expanded="false" />
+            <marker date="1501118409390" expanded="false" signature="3538:4157" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -549,14 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1683">
-          <caret line="65" column="17" lean-forward="false" selection-start-line="65" selection-start-column="17" selection-end-line="65" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/JSONFlattener.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="451">
@@ -596,7 +599,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/CSVWriter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="496">
-          <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
           <folding>
             <element signature="e#0#5038#0" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -614,18 +617,29 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="694">
-          <caret line="102" column="41" lean-forward="true" selection-start-line="102" selection-start-column="41" selection-end-line="102" selection-end-column="41" />
+        <state relative-caret-position="450">
+          <caret line="106" column="114" lean-forward="false" selection-start-line="106" selection-start-column="114" selection-end-line="106" selection-end-column="114" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#Main#0;class#Main#0" expanded="false" />
-            <element signature="e#4617#5296#0" expanded="false" />
-            <element signature="e#5419#6381#0" expanded="false" />
-            <element signature="e#5752#5760#0" expanded="true" />
-            <element signature="e#6471#7204#0" expanded="false" />
-            <element signature="class#7248:7490" expanded="false" />
-            <element signature="class#7772:8092" expanded="false" />
+            <element signature="method#initializeUIElements#0;class#Main#0" expanded="false" />
+            <element signature="e#4717#5396#0" expanded="false" />
+            <element signature="e#5519#6480#0" expanded="false" />
+            <element signature="e#5852#5860#0" expanded="true" />
+            <element signature="e#6570#7303#0" expanded="false" />
+            <element signature="class#7347:7589" expanded="false" />
+            <element signature="class#7871:8191" expanded="false" />
+            <element signature="method#constructGrids#0;class#Main#0" expanded="false" />
+            <marker date="1501118409390" expanded="false" signature="3538:4157" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="800">
+          <caret line="68" column="96" lean-forward="false" selection-start-line="68" selection-start-column="96" selection-end-line="68" selection-end-column="96" />
+          <folding />
         </state>
       </provider>
     </entry>
