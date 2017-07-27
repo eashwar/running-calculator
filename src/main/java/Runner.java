@@ -3,19 +3,34 @@ import javafx.beans.property.SimpleStringProperty;
 public class Runner {
 
 
-    private final SimpleStringProperty name;
+    private final SimpleStringProperty nameProperty;
+    private String name;
+
 
     private int ppm_seconds;
     private int ppm_minutes;
-    private final SimpleStringProperty pacePerMile;
+    private final SimpleStringProperty pacePerMileProperty;
+    private String pacePerMile;
+
+    public Runner(String name, String pacePerMile)
+    {
+        this.nameProperty = new SimpleStringProperty(name);
+        setName(name);
+
+        this.pacePerMileProperty = new SimpleStringProperty(pacePerMile);
+        setPacePerMile(pacePerMile);
+    }
+
 
     public Runner(String name, int sec, int min, double dist)
     {
-        this.name = new SimpleStringProperty(name);
+        this.nameProperty = new SimpleStringProperty(name);
+        setName(name);
 
         calculatePacePerMile(sec, min, dist);
 
-        this.pacePerMile = new SimpleStringProperty(getPpmString());
+        this.pacePerMileProperty = new SimpleStringProperty(getPpmString());
+        setPacePerMile(getPpmString());
     }
     private void calculatePacePerMile(int sec, int min, double dist) {
         int tempo_total_secs = (min*60) + sec;
@@ -25,23 +40,39 @@ public class Runner {
         ppm_seconds = ppm_total_secs%60;
     }
 
-    public void setName(String name)
+    public void setNameProperty(String nameProperty)
     {
-        this.name.set(name);
+        this.nameProperty.set(nameProperty);
     }
-    public String getName()
+    public String getNameProperty()
     {
-        return name.get();
+        return nameProperty.get();
     }
 
-    public void setPacePerMile(String ppm){
-        this.pacePerMile.set(ppm);
-    }
-    public String getPacePerMile()
-    {
-        return pacePerMile.get();
+    public String getName() {
+        return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+
+    public void setPacePerMileProperty(String ppm){
+        this.pacePerMileProperty.set(ppm);
+    }
+    public String getPacePerMileProperty()
+    {
+        return pacePerMileProperty.get();
+    }
+    public String getPacePerMile() {
+        return pacePerMile;
+    }
+
+    public void setPacePerMile(String pacePerMile) {
+        this.pacePerMile = pacePerMile;
+    }
 
     public String getPpmString()
     {
@@ -50,6 +81,6 @@ public class Runner {
     }
     public String toString()
     {
-        return getName();
+        return getNameProperty();
     }
 }

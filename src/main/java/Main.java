@@ -16,11 +16,21 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+
+import java.io.FileReader;
+import java.io.Reader;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.google.gson.*;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVRecord;
 
 public class Main extends Application{
 
+    private Gson gson = new Gson();
     //UI ELEMENTS
     private Label name_label;
     private Label minutes_label;
@@ -35,6 +45,8 @@ public class Main extends Application{
     private Button calculateBtn = new Button();
     private HBox hbBtn;
 
+    private Button saveBtn = new Button();
+    private Button loadBtn = new Button();
     private Button deleteRowBtn = new Button();
 
     private GridPane AddRunnerPane = new GridPane();
@@ -50,7 +62,7 @@ public class Main extends Application{
 
     private final TableView<Runner> runnerTableView = new TableView<Runner>();
 
-    public final ObservableList<Runner> runnerObservableList = FXCollections.observableArrayList();
+    private ObservableList<Runner> runnerObservableList = FXCollections.observableArrayList();
 
     public Main() {
     }
@@ -72,6 +84,7 @@ public class Main extends Application{
         runnerObservableList.addListener(new ListChangeListener() {
             public void onChanged(ListChangeListener.Change change) {
                 while(change.next()) {
+                    System.out.println("change detected!");
                 }
             }
         });
@@ -103,12 +116,12 @@ public class Main extends Application{
         TableColumn nameCol = new TableColumn("Name");
         nameCol.setMinWidth(50);
         nameCol.setCellValueFactory(
-                new PropertyValueFactory<Runner, String>("name"));
+                new PropertyValueFactory<Runner, String>("nameProperty"));
 
         TableColumn ppmCol = new TableColumn("Tempo Pace");
         ppmCol.setMinWidth(70);
         ppmCol.setCellValueFactory(
-                new PropertyValueFactory<Runner, String>("pacePerMile"));
+                new PropertyValueFactory<Runner, String>("pacePerMileProperty"));
 
         runnerTableView.setItems(runnerList);
         runnerTableView.getColumns().setAll(nameCol, ppmCol);
@@ -128,6 +141,45 @@ public class Main extends Application{
 
         distance_label = new Label("Total Distance: ");
         distance.setPromptText("miles");
+
+        saveBtn.setText("Save to CSV");
+        saveBtn.setAlignment(Pos.BOTTOM_LEFT);
+        saveBtn.setOnAction(event -> {
+            List<RunnerDTO> runnerDTOList = new ArrayList<RunnerDTO>();
+            for (Runner runner : runnerObservableList)
+            {
+                RunnerDTO runnerDTO = new RunnerDTO();
+                runnerDTO.applyChangesFrom(runner);
+                runnerDTOList.add(runnerDTO);
+            }
+            String runnerJSON = gson.toJson(runnerDTOList);
+            List<Map<String, String>> flatJson = JSONFlattener.parseJson(runnerJSON);
+            CSVWriter.writeToFile(CSVWriter.getCSV(flatJson), "runnerlist.CSV");
+        });
+
+        loadBtn.setText("Load from CSV");
+        loadBtn.setAlignment(Pos.BOTTOM_CENTER);
+        loadBtn.setOnAction(event -> {
+            try {
+                Reader in = new FileReader("runnerlist.csv");
+                Iterable<CSVRecord> records = CSVFormat.EXCEL.parse(in);
+                ArrayList<Runner> runners = new ArrayList<Runner>();
+                for (CSVRecord record : records) {
+                    String name = record.get(0);
+                    System.out.print("name: " + name);
+                    String pacePerMile = record.get(1);
+                    System.out.println(", ppm: " + pacePerMile);
+                    Runner runner = new Runner(name, pacePerMile);
+                    runners.add(runner);
+                }
+                runners.remove(0);
+                runnerObservableList = FXCollections.observableArrayList(runners);
+                configTableView(runnerObservableList);
+            } catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        });
 
         calculateBtn.setText("Add Runner to Table");
         calculateBtn.setOnAction(event -> {
@@ -203,8 +255,10 @@ public class Main extends Application{
         RunnerTablePane.setAlignment(Pos.CENTER);
         RunnerTablePane.setHgap(10);
         RunnerTablePane.setVgap(10);
-        RunnerTablePane.add(runnerTableView, 0, 1);
-        RunnerTablePane.add(deleteRowBtn, 0, 2);
+        RunnerTablePane.add(runnerTableView, 0, 1, 3, 1);
+        RunnerTablePane.add(deleteRowBtn, 2, 2);
+        RunnerTablePane.add(loadBtn, 1, 2);
+        RunnerTablePane.add(saveBtn, 0, 2);
 
     }
 
